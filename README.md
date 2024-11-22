@@ -16,9 +16,9 @@ Before running the script, make sure you have the following:
 
 1. **Python 3.x** installed on your system.
 2. **Whisper** installed via `pip`:
-   
+   '''-bash
    pip install openai-whisper
-  
+  '''
 3. **pydub** installed for audio processing:
    
    pip install pydub
