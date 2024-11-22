@@ -10,7 +10,7 @@ import subprocess
 def convert_video_to_mp3(input_file):
     # Check if the file is an MP4 video file
     if input_file.lower().endswith('.mp4'):
-        mp3_file = input_file.rsplit('.', 1)[0] + "1.mp3"
+        mp3_file = input_file.rsplit('.', 1)[0] + "_audio.mp3"
         print(f"Converting video {input_file} to MP3...")
 
         # Run FFmpeg to extract audio as MP3
@@ -33,7 +33,7 @@ def split_on_silence(sound, min_silence_len=1000, silence_thresh=-40):
     return [sound[i[0]:i[1]] for i in silence_chunks]
 
 
-def transcribe_podcast(podcast_audio_file):
+def transcribe_podcast(podcast_audio_file, output_text_file):
     # Check if input file is a video, convert to MP3 if necessary
     audio_file = convert_video_to_mp3(podcast_audio_file)
 
@@ -63,8 +63,13 @@ def transcribe_podcast(podcast_audio_file):
 
     print("Full Transcript: \n")
     print(transcript)
+    # Save the full transcript to a text file with UTF-8 encoding
+    with open(output_text_file, "w", encoding="utf-8") as f:
+        f.write(transcript)
+
+    print(f"Full Transcript saved to: {output_text_file}")
     print("\n")
 
 
-# Example usage: Provide the input MP4 or MP3 file path
-transcribe_podcast(r"D:\Project\Podcast.mp4")
+# Example usage: Provide the input MP4 or MP3 file path and the desired output text file path
+transcribe_podcast(r"D:\Project\Podcast.mp3", r"D:\Project\transcription.txt")
