@@ -1,3 +1,4 @@
+#import modules
 import whisper
 from pydub import AudioSegment
 import io
